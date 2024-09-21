@@ -96,11 +96,13 @@ async def get_data_by_page(page, last_update_date, URL, ACCESS_TOKEN, async_sess
 
 async def get_all_data(request_session):
     config, group = request_session["config"], request_session["group"]
-    DATABASE_NAME, ACCESS_TOKEN, USER_ID, HOST_ID, group = (config['database_name'],
-                                                                  config['access_token'],
-                                                                  config['user_id'],
-                                                                  config['host_id'],
-                                                                  group['name'])
+    DATABASE_NAME, ACCESS_TOKEN, USER_ID, HOST_ID, group = (
+        config['database_name'], 
+        config['access_token'], 
+        config['user_id'], 
+        config['host_id'], 
+        group['name']
+        )
 
     async_session = await connect_db(DATABASE_NAME)
 

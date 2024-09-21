@@ -11,7 +11,7 @@ from api.auth.auth_config import current_user
 from api.auth.models import GroupUserAssociation, User
 from api.config.models import Config, GroupConfigAssociation, List, ListURI, Role, Group
 from api.config.utils import get_config_info
-from config import DB_USER, DB_PASSWORD, DB_HOST, DB_PORT
+from config import DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DATABASE_GENERAL_NAME
 from db.session import get_db_general
 
 from fastapi_users.password import PasswordHelper
@@ -49,7 +49,7 @@ async def add_config(request: Request,
     session.add(config)
     await session.commit()
 
-    conn = await asyncpg.connect(user=DB_USER, password=DB_PASSWORD, host=DB_HOST, port=DB_PORT, database="postgres")
+    conn = await asyncpg.connect(user=DB_USER, password=DB_PASSWORD, host=DB_HOST, port=DB_PORT, database=DATABASE_GENERAL_NAME)
     try:
         await conn.execute(f'CREATE DATABASE "{database_name}"')
         print(f"CREATE DATABASE {database_name}: successfully")
